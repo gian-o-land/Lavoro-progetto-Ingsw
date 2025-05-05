@@ -1,8 +1,8 @@
 Create table Account_amministrativo(
-	Username VARCHAR(20) NOT NULL,
+	Username d_admin NOT NULL,
 	Password d_pass NOT NULL,
 	Ruolo d_ruolo NOT NULL,
-	Creatore VARCHAR(20),
+	Admin_creatore d_admin,
 	NomeAgenzia VARCHAR(20),
 	CONSTRAINT Pk_admin PRIMARY KEY(Username),
 	CONSTRAINT Fk_Creatore FOREIGN KEY(Creatore) REFERENCES Account_amministrativo(Username)
@@ -10,23 +10,23 @@ Create table Account_amministrativo(
 );
 
 Create table Agente(
-	Username VARCHAR(20) NOT NULL,
-	Telefono VARCHAR(10) NOT NULL,
+	Username d_agente NOT NULL,
+	Telefono d_tel NOT NULL,
 	Password d_pass NOT  NULL,
 	Email d_mail NOT NULL,
-	Creatore VARCHAR(20),
+	Admin_creatore VARCHAR(20),
 	CONSTRAINT Pk_agente PRIMARY KEY(Username),
 	CONSTRAINT Fk_Creatore FOREIGN KEY(Creatore) REFERENCES Account_amministrativo(Username)
 	ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 Create table Inserzione(
-	Id_inserzione VARCHAR(8) NOT NULL,
+	Id_inserzione d_inser NOT NULL,
 	Quadratura INTEGER NOT NULL,
 	N_Bagni INTEGER NOT NULL,
 	N_Locali INTEGER NOT NULL,
 	Piano INTEGER NOT NULL,
-	Categoria d_inser NOT NULL,
+	Categoria d_catInser NOT NULL,
 	Arredamento d_arred NOT NULL,
 	Balcone BOOLEAN,
 	Ascensore BOOLEAN,
@@ -47,19 +47,19 @@ Create table Inserzione(
 
 Create table Utente(
 	Email d_mail NOT NULL,
-	Telefono VARCHAR(10) NOT NULL,
+	Telefono d_tel NOT NULL,
 	Password d_pass NOT NULL,
 	NomeCognome VARCHAR(50) NOT NULL,
 	CONSTRAINT Pk_Utente PRIMARY KEY(Email)
 );
 
 Create table Prenotazione(
-	Id_Prenotazione VARCHAR(5) NOT NULL, 
+	Id_Prenotazione d_pren NOT NULL, 
 	DataOra TIMESTAMP NOT NULL,
 	Contenuto VARCHAR(300) NOT NULL,
 	Stato d_stato NOT NULL,
 	MailUtente d_mail NOT NULL,
-	Codice_Inserzione VARCHAR(8) NOT NULL,
+	Codice_Inserzione d_inser NOT NULL,
 	UsernameAgente VARCHAR(20) NOT NULL,
 	CONSTRAINT Pk_Prenotazione PRIMARY KEY(Id_Prenotazione),
 	CONSTRAINT Fk_Utente FOREIGN KEY(MailUtente) REFERENCES Utente(Email)
@@ -70,12 +70,12 @@ Create table Prenotazione(
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-Create table Foto(
+Create table Immagine(
 	NomeFile VARCHAR(30) NOT NULL, 
 	Formato d_formato NOT NULL,
-	Dimensione FLOAT NOT NULL,
+	Dimensione d_dim NOT NULL,
 	Categoria d_foto NOT NULL,
-	Codice_Inserzione VARCHAR(8) NOT NULL,
+	Codice_Inserzione d_inser NOT NULL,
 	CONSTRAINT Pk_foto PRIMARY KEY(NomeFile),
 	CONSTRAINT Fk_Inserzione FOREIGN KEY(Codice_Inserzione) REFERENCES Inserzione(Id_inserzione)
 	ON DELETE CASCADE ON UPDATE CASCADE
