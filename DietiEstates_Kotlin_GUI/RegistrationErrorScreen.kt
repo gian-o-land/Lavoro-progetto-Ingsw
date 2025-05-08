@@ -1,0 +1,1 @@
+<contenuto Registrazione con campi obbligatori>
