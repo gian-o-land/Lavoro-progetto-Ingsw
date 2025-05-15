@@ -41,7 +41,7 @@ Create domain d_arred AS VARCHAR(20)
 CHECK (VALUE = 'Completo' OR VALUE = 'Parziale' OR VALUE = 'No');
 
 Create domain d_energ AS VARCHAR(20)
-CHECK (VALUE = 'Alta' OR VALUE = 'Media' OR VALUE = 'Bassa' OR VALUE = 'Tutte');
+CHECK (VALUE = 'Alta' OR VALUE = 'Media' OR VALUE = 'Bassa');
 
 Create domain d_stato AS VARCHAR(20)
 CHECK (VALUE = 'Accettata' OR VALUE = 'Rifiutata' OR VALUE = 'Attesa');
